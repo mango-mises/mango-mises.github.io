@@ -1,10 +1,9 @@
 ---
 layout: post
 title: Thoughts on distributed ledger design
-cover-img: /assets/img/path.jpg
-thumbnail-img: /assets/img/thumb.png
-share-img: /assets/img/path.jpg
 tags: [consensus, proof, scale, integrity]
+comments: true
+mathjax: true
 author: IV
 ---
 
