@@ -4,7 +4,7 @@ title: Thoughts on distributed ledger design
 cover-img: /assets/img/path.jpg
 thumbnail-img: /assets/img/thumb.png
 share-img: /assets/img/path.jpg
-tags: [distributed ledger, consensus, proof, DAG, architecture, scale, integrity]
+tags: [consensus, proof, scale, integrity]
 author: IV
 ---
 
