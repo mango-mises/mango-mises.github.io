@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Scalable ledger design
+title: Scalable Ledger Design
 tags: [consensus, proof, scale, integrity]
 comments: true
 mathjax: true
