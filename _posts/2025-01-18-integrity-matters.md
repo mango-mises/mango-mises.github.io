@@ -60,7 +60,7 @@ I'm guessing (!) the DAG paradigm won't improve the _security_ of PoS quorum-bas
 
 In my opinion the field of PoW consensus is essentially complete with [DAG KNIGHT](https://eprint.iacr.org/2022/1494.pdf). This amazing paper is the culmination of an admirable intellectual journey going back at least as far as [2015](https://eprint.iacr.org/2013/881.pdf). I'm very lucky to have access to both Yoni and Sutton, and I'll try to write about DAG KNIGHT in the near future.
 
-Interestingly, while Narwhal interprets the causality DAG as a mempool protocol, the word 'mempool' appears neither in DAG KNIGHT nor GHOSTDAG. If I understand correctly, Kaspa clients do include a mempool protocol that propagates transactions. In my opinion mempool protocols are interesting from an incentive viewpoint, as miners don't have an obvious reason for sharing profitable transactions. I also think interpretting the DAG as a mempool protocol can improve (what I understand of) Yoni's reverse auction idea. I'll write a bit more below.
+Interestingly, while Narwhal interprets the causality DAG as a mempool protocol, the word 'mempool' appears neither in DAG KNIGHT nor GHOSTDAG. If I understand correctly, Kaspa clients do include a mempool protocol that propagates transactions. In my opinion mempool protocols are interesting from an incentive viewpoint, as miners don't have an obvious reason for sharing profitable transactions. I also think interpretting the DAG as a mempool protocol may compliment (what I understand of) Yoni's reverse auction idea. I'll write a bit more below.
 
 ### Social integrity
 
@@ -77,15 +77,17 @@ With neither an oracle for truth nor an omniscient supervisor, we should draw in
 
 The market analogy highlights the drawbacks of sequential monopologies (chains) compared to DAGs. In a nutshell, a market with a single daily-varying stall is inferior to a market with many stalls (wide DAG). This holds even under the unreasonable assumption that prices remain fixed over time, due to the latency of price discovery (or dually, the latency of "correcting" for a crazy seller). A totally unnecessary association is Birkhoff's ergodic theorem asserting equality between space-average and time-average (w.r.t any measure-preserving endo), except space-average is more natural and discovered faster in our context. Going back to reality, where prices change often, sequential monopolies are even worse. I think this jusifies wide DAGs for the oracle problem.
 
-For MEV I want to outline my "noise" direction, which merely obstructs MEV, vs Yoni's beautiful reverse auctions, which actually improves economic efficiency (and life) for both operators and users.
+For MEV I want to outline my "noise" approach, which merely obstructs MEV, vs Yoni's beautiful reverse auctions, which actually improve economic efficiency (and life) for both operators and users.
 1. (Noise) When ordering causally independent blocks, the protocol should mix the transactions between them. Mixing obstructs MEV since operators cannot even _locally_ control ordering: their proposed blocks are not pasted "as-is" into the ledger. The wider the DAG, the more obstructive the noise becomes. This approach can be adapted to chains at the cost of latency.
-2. (Reverse auctions / bilateral market) In a nutshell, if several operators wish to include a given user transaction, they can compete in an auction where each bid signifies the "kickback" offered from the operator to the user. Thus we have a beautiful duality: on one hand operators auction-off ledger space, but on the other hand users auction-off their transactions. This approach too can be adapted to chains at the cost of latency.
+2. (Reverse auctions / bilateral market) In a nutshell, if several operators wish to include a given user transaction, they can compete in an auction where each bid signifies the "kickback" offered from the operator to the user. Thus we have a beautiful duality: on one hand operators auction-off ledger space, but on the other hand users auction-off their transactions. The devil is in the precise specification of the auction mechanism. At any rate, this approach too can be adapted to chains at the cost of latency.
 
-Whatever you prefer, wide DAGs are crucial for social integrity.
+A remark on reverse auctions. Ideally, once a transaction is "registered", _all_ operators can enter the auction for its inclusion. I think the canonical way to achieve this is to interpret "registration" as inclusion in the DAG, not something at a naive mempool level. In a layered DAG, the auction can be held for some set amount of rounds. Even fancier things come to mind, like bid escalation (multiple round auctions).
+
+I'm convinced that wide DAGs are crucial for social integrity.
 
 ### Computational integrity
 
-TODO
+Network integrity ensures consistent views of the ledger. Social integrity ensures it is created honestly and with minimal exploitation. But ledgers also involve computation. Be it signature verification or invocation of sophisticated programs, every computation must be executed with integrity.
 
 [^1]: Common belief in the context of modal logic.
 [^2]: It is customary to disregard the distinction between network operators (creators of blocks/votes) and other nodes that can only manipulate the propagation of messages. In practice this distinction is important.
