@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Integrity Matters
-tags: [consensus, proof, scale, integrity]
+tags: [consensus, proof, integrity]
 comments: true
 mathjax: true
 author: IV
@@ -20,11 +20,11 @@ Network integrity means all observers have the same view of the ledger. It has t
 
 In my view, a consensus protocol transforms common belief[^1] in some honest threshold of network nodes[^2] into common belief in consistency of views of the ledger by all observers. I think there is formal content to this viewpoint. For instance, in the oral message algorithm from the [Byzantine Generals Problem](https://dl.acm.org/doi/10.1145/357172.357176) paper, it's cool to interpret a chain of messages (a path in each agent's local tree) as a sequence of belief operators. Disregarding introspections, this seems to lead to "practical" common belief.
 
-The operator network must be open to avoid censorship, and must be broad for robustness and distribution of power.
+The operator network must be open to avoid censorship, and broad for robustness and distribution of power.
 
-The observer network must be maximally broad and cohesive (!), so it can collectively monitor the operators. The presence of such an "observer hivemind" creates an integrity web which deters operators from misbehaving, as their offenses will quickly become common knowledge.
+The observer network must be as broad and cohesive as possible to collectively monitor the operators. The presence of such an "observer hivemind" creates an integrity web which deters operators from misbehaving, as their offenses will quickly become common knowledge.
 
-Network integrity requires a large and cohesive network. The moral solution is thus to pursure a single such network, without fragmentation and without duplicate efforts. Emphatically, the network comprising this layer consists not only of "operator" nodes, but also of "relayer" nodes that participate in P2P efforts and contribute to cohesion, and "observer" nodes.
+Network integrity requires a large and cohesive network. The moral solution is thus to pursure a single unified network, without fragmentation or duplicate efforts. Emphatically, it consists not only of "operator" nodes, but also of "relayer" nodes that participate in P2P efforts and contribute to cohesion, and "observer" nodes which may not participate in P2P but nevertheless monitor integrity.
 
 Such a vision quickly runs into a scaling question: Is there tension between security, performance, and network size?
 
@@ -35,11 +35,11 @@ Causality relations are canonically structured as DAGs:
 2. An event may causally depend on multiple independent events. This is a node with several parents.
 3. Two events cannot causally depend on each other.
 
-Let's fix a context. The details don't really matter yet, but in ours, events are blocks. Each view of the world has its own DAG, encoding known information. Since causality is absolute, all such DAGs are consistent in the sense that their superposition is also a DAG, corresponding to the union of information from constituent views.  Note the stark contrast to possible of conflicting views of e.g. the longest/heaviest chain. In my opinion, such discrepancies hint that ordering must be founded on full information, i.e the entire ambient DAG as opposed to arbitrarily chosen substructures.
+While the context is not yet relevant, in ours, events correspond to blocks. Each view of the world has its own DAG, encoding known information. Since causality is absolute, all such DAGs are consistent in the sense that their superposition is also a DAG, corresponding to the union of information from constituent views.  Note the stark contrast to possible conflicting views of e.g. the longest/heaviest chain. In my opinion, such discrepancies hint that ordering must be founded on full information, i.e the entire ambient DAG as opposed to arbitrarily chosen substructures.
 
-The canonical DAG structure of causality relations precludes any inherent tendency in favor of sequential monopolies. In our distributed ledger context, there's a very compelling argument _against_ sequential monopolies - they are hugely centralized by definition. In the next section we'll distill this principled intuition into strong arguments in favor of _wide DAGs_ for the sake of social integrity.
+The canonical DAG structure of causality relations precludes inherent bias in favor of sequential monopolies. In our distributed ledger context, there's a very compelling argument _against_ sequential monopolies - they are hugely centralized by definition. In the next section we'll distill this principled intuition into strong arguments in favor of _wide DAGs_ for the sake of social integrity.
 
-The fact _all_ events are naturally structured in a causality DAG inspires a separation between event revelation[^4] and event ordering. Revelation means each node should keep its full view in the form of its local causality DAG. Ordering then converts this DAG into a chain. This yoga is far-reaching and Sybil-independent. In PoS it is beautifully exemplified e.g. by [Narwhal and Tusk](https://arxiv.org/pdf/2105.11827) and [Mysticeti-C](https://arxiv.org/pdf/2310.14821). In PoW it is incarnated in the masterpiece called [DAG-KNIGHT](https://eprint.iacr.org/2022/1494.pdf) (and already in [GHOSTDAG](https://eprint.iacr.org/2018/104.pdf) before it). Let's dive in a little.
+The fact _all_ events are naturally structured in a causality DAG inspires a separation between event revelation[^4] and event ordering. Revelation means each node should keep its full view in the form of its local causality DAG. Ordering then converts this DAG into a chain. This yoga is far-reaching and Sybil-independent. In PoS it is beautifully exemplified e.g. by [Narwhal and Tusk](https://arxiv.org/pdf/2105.11827) and [Mysticeti-C](https://arxiv.org/pdf/2310.14821). In PoW it is incarnated in the masterpiece called [DAG-KNIGHT](https://eprint.iacr.org/2022/1494.pdf) (and already in [GHOSTDAG](https://eprint.iacr.org/2018/104.pdf) before it). Below we go into slightly more detail about the PoS and PoW contexts.
 
 ## PoS quorums
 
@@ -49,7 +49,7 @@ Just to make the security point explicit:
 * In monolithic PoS quorum-based protocols, a small quorum means consensus is secured by a small portion of stake.
 * In PoW, consensus is secured by all of the hashrate[^6].
 
-Such protocols feature a common fan-out → fan-in pattern which obstructs their throughput by strongly coupling between dissemination of new transactions and consensus.
+Such protocols feature a common fan-out → fan-in pattern which obstructs their throughput by tightly coupling transaction dissemination and consensus.
 1. (Fan-out.) A block authored by Alice is propagated out throughout the network, where operators individually vote on it.
 2. (Fan-in.) Individual votes are jointly consumed by appending (a hash of) a quorum to the next block.
 3. Repeat.
