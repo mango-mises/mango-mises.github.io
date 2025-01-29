@@ -24,7 +24,7 @@ The operator network must be open to avoid censorship, and broad for robustness 
 
 The observer network must be as broad and cohesive as possible to collectively monitor the operators. The presence of such an "observer hivemind" creates an integrity web which deters operators from misbehaving, as their offenses will quickly become common knowledge.
 
-Network integrity requires a large and cohesive network. The moral solution is thus to pursure a single unified network, without fragmentation or duplicate efforts. Emphatically, it consists not only of "operator" nodes, but also of "relayer" nodes that participate in P2P efforts and contribute to cohesion, and "observer" nodes which may not participate in P2P but nevertheless monitor integrity.
+Network integrity requires a large and cohesive network. The ideal solution is thus a single unified network, without fragmentation or duplicate efforts. Emphatically, it consists not only of "operator" nodes, but also of "relayer" nodes that participate in P2P efforts and contribute to cohesion, and "observer" nodes which may not participate in P2P but nevertheless monitor integrity.
 
 Such a vision quickly runs into a scaling question: Is there tension between security, performance, and network size?
 
@@ -110,7 +110,7 @@ That's it, right? Wrong! The above applications of proofs facilitate a broad net
 
 Proofs are the missing piece for resolving all integrity matters!
 
-In the next post I want to focus on scale and outline some thoughts on scalable ledger design.
+In the next post I want to focus on scalable ledger design.
 
 [^1]: Common belief in the context of modal logic.
 [^2]: It is customary to disregard the distinction between network operators (creators of blocks/votes) and other nodes that can only manipulate the propagation of messages. In practice this distinction is important.
