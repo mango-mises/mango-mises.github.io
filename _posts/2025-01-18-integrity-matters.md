@@ -12,7 +12,7 @@ In my opinion distributed ledgers face three integrity problems:
 2. Social integrity
 3. Computational integrity
 
-In this post I want to dump some thoughts revolving around these problems. In a subsequent post I want to dump thoughts on scalable ledger design.
+In this post I want to dump some thoughts revolving around these problems.
 
 # Network integrity
 
@@ -110,7 +110,9 @@ That's it, right? Wrong! The above applications of proofs facilitate a broad net
 
 Proofs are the missing piece for resolving all integrity matters!
 
-In the next post I want to focus on scalable ledger design.
+In the next post I want to focus on scalable inetgrity webs.
+
+______
 
 [^1]: Common belief in the context of modal logic.
 [^2]: It is customary to disregard the distinction between network operators (creators of blocks/votes) and other nodes that can only manipulate the propagation of messages. In practice this distinction is important.
