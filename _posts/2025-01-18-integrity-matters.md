@@ -110,7 +110,7 @@ That's it, right? Wrong! The above applications of proofs facilitate a broad net
 
 Proofs are the missing piece for resolving all integrity matters!
 
-In the next post I want to focus on scalable inetgrity webs.
+In the next post I want to focus on scalable integrity webs.
 
 ______
 
