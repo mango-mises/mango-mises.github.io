@@ -7,7 +7,7 @@ mathjax: true
 author: IV
 ---
 
-In my opinion distributed ledgers face three integrity problems:
+Distributed ledgers face three integrity problems:
 1. Network integrity
 2. Social integrity
 3. Computational integrity
@@ -18,7 +18,7 @@ In this post I want to dump some thoughts revolving around these problems.
 
 Network integrity means all observers have the same view of the ledger. It has three components: a consensus protocol, a broad, open network of operators running it, and a broader network of observers ("the people") who monitor the operators.
 
-In my view, a consensus protocol transforms common belief[^1] in some honest threshold of network nodes[^2] into common belief in consistency of views of the ledger by all observers. I think there is formal content to this viewpoint. For instance, in the oral message algorithm from the [Byzantine Generals Problem](https://dl.acm.org/doi/10.1145/357172.357176) paper, it's cool to interpret a chain of messages (a path in each agent's local tree) as a sequence of belief operators. Disregarding introspections, this seems to lead to "practical" common belief.
+I think of a consensus protocol as transforming common belief[^1] in some honest threshold of network nodes[^2] into common belief in consistency of views of the ledger by all observers. There is formal content to this viewpoint; for instance, in the oral message algorithm from the [Byzantine Generals Problem](https://dl.acm.org/doi/10.1145/357172.357176) paper, it's cool to interpret a chain of messages (a path in each agent's local tree) as a sequence of belief operators. Disregarding introspections, this seems to lead to "practical" common belief.
 
 The operator network must be open to avoid censorship, and broad for robustness and distribution of power.
 
@@ -35,7 +35,7 @@ Causality relations are canonically structured as DAGs:
 2. An event may causally depend on multiple independent events. This is a node with several parents.
 3. Two events cannot causally depend on each other.
 
-While the context is not yet relevant, in ours, events correspond to blocks. Each view of the world has its own DAG, encoding known information. Since causality is absolute, all such DAGs are consistent in the sense that their superposition is also a DAG, corresponding to the union of information from constituent views.  Note the stark contrast to possible conflicting views of e.g. the longest/heaviest chain. In my opinion, such discrepancies hint that ordering must be founded on full information, i.e the entire ambient DAG as opposed to arbitrarily chosen substructures.
+While the context is not yet relevant, in ours, events correspond to blocks. Each view of the world has its own DAG, encoding known information. Since causality is absolute, all such (honestly constructed!) DAGs are consistent in the sense that their superposition is also a DAG, corresponding to the union of information from constituent views.  Note the stark contrast to possible conflicting views of e.g. the longest/heaviest chain. Such discrepancies hint that ordering must be founded on full information, i.e the entire ambient DAG as opposed to arbitrarily chosen substructures.
 
 The canonical DAG structure of causality relations precludes inherent bias in favor of sequential monopolies. In our distributed ledger context, there's a very compelling argument _against_ sequential monopolies - they are hugely centralized by definition. In the next section we'll distill this principled intuition into strong arguments in favor of _wide DAGs_ for the sake of social integrity.
 
@@ -66,7 +66,7 @@ I'm guessing (!) the DAG paradigm won't improve the _security_ of PoS quorum-bas
 
 In my opinion the field of PoW consensus is essentially complete with [DAG KNIGHT](https://eprint.iacr.org/2022/1494.pdf). This amazing paper is the culmination of an admirable intellectual journey going back at least as far as [2015](https://eprint.iacr.org/2013/881.pdf). I'm very lucky to have access to both Yoni and Sutton, and I'll try to write about DAG KNIGHT in the near future.
 
-Interestingly, while Narwhal interprets the causality DAG as a mempool protocol, the word 'mempool' appears neither in DAG KNIGHT nor GHOSTDAG. If I understand correctly, Kaspa clients do include a mempool protocol that propagates transactions. In my opinion mempool protocols are interesting from an incentive viewpoint, as miners don't have an obvious reason for sharing profitable transactions. I also think interpretting the DAG as a mempool protocol may compliment (what I understand of) Yoni's reverse auction idea. I'll write a bit more below.
+Interestingly, while Narwhal interprets the causality DAG as a mempool protocol, the word 'mempool' appears neither in DAG KNIGHT nor GHOSTDAG. If I understand correctly, Kaspa clients do include a mempool protocol that propagates transactions. Mempool protocols are interesting from an incentive viewpoint, as miners don't have an obvious reason for sharing profitable transactions. I also think interpretting the DAG as a mempool protocol may compliment (what I understand of) Yoni's reverse auction idea. I'll write a bit more below.
 
 # Social integrity
 
@@ -122,4 +122,4 @@ ______
 [^6]: There are some caveats here for naive protocols e.g. uncle blocks.
 [^7]: The "original" says "integrity is doing the right thing, even when no one is watching". I have seen it misattributed to C.S Lewis, maybe due to the thematic resonance with his apologist views. At any rate, in our field I hope _everyone_ is watching all the time - the whole is to avoid _hoping_ for integrity.
 [^8]: UTXOs have built-in ordering by their very native as "directed envelopes". In Ethereum, each user controls the ordering on its transactions using sequence numbers, known in the Ethereum ecosystem as account nonces. Furthermore, there is literature on fair-ordering protocols that impose causality relations on the ledger.
-[^9]: We could and probably should have used exchange rates and not prices, but the passage to cardinals somehow simplifies the subsequent bit about common knowledge in my opinion.
+[^9]: We could and probably should have used exchange rates and not prices, but the passage to cardinals somehow simplifies the subsequent bit about common knowledge.
